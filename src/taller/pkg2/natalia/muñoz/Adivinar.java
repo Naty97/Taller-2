@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package taller.pkg2.natalia.muñoz;
 
 /**
@@ -11,12 +6,12 @@ package taller.pkg2.natalia.muñoz;
  */
 public class Adivinar extends javax.swing.JFrame {
 
-    /**
-     * Creates new form Adivinar
-     */
+    int numeroAleatorio;
+    int intentos = 0;
+    int numUsuario;
+    
     public Adivinar() {
         initComponents();
-        btnGenera.setVisible(true);
     }
 
     /**
@@ -28,10 +23,25 @@ public class Adivinar extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        txtRandom = new javax.swing.JTextField();
+        txtUsuario = new javax.swing.JTextField();
         btnGenera = new javax.swing.JButton();
-        jTextField1 = new javax.swing.JTextField();
+        btnComprueba = new javax.swing.JButton();
+        txtIntentos = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        txtRandom.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtRandomActionPerformed(evt);
+            }
+        });
+
+        txtUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtUsuarioActionPerformed(evt);
+            }
+        });
 
         btnGenera.setText("Generar");
         btnGenera.addActionListener(new java.awt.event.ActionListener() {
@@ -40,9 +50,17 @@ public class Adivinar extends javax.swing.JFrame {
             }
         });
 
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        btnComprueba.setText("Comprobar");
+        btnComprueba.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                btnCompruebaActionPerformed(evt);
+            }
+        });
+
+        txtIntentos.setText("Número de Intentos: 3");
+        txtIntentos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtIntentosActionPerformed(evt);
             }
         });
 
@@ -51,37 +69,72 @@ public class Adivinar extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(147, 147, 147)
-                        .addComponent(btnGenera))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(68, 68, 68)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(88, Short.MAX_VALUE))
+                .addGap(32, 32, 32)
+                .addComponent(txtRandom, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 103, Short.MAX_VALUE)
+                .addComponent(txtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(39, 39, 39))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(42, 42, 42)
+                .addComponent(btnGenera, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnComprueba, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(49, 49, 49))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(txtIntentos, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(21, 21, 21))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(31, 31, 31)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap()
+                .addComponent(txtIntentos, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(26, 26, 26)
-                .addComponent(btnGenera)
-                .addContainerGap(77, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtRandom, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(27, 27, 27)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnGenera, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnComprueba, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(52, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void txtUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUsuarioActionPerformed
+        numUsuario = Integer.parseInt(btnComprueba.getText());
+    }//GEN-LAST:event_txtUsuarioActionPerformed
+
+    private void txtRandomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtRandomActionPerformed
+        txtRandom.setText("Número random generado, adivinelo!!");
+    }//GEN-LAST:event_txtRandomActionPerformed
+
     private void btnGeneraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGeneraActionPerformed
-        int numeroAleatorio = (int) Math.floor(Math.random() * 10);
-        Integer.toString(numeroAleatorio);
-        jTextField1.setText("");
+        numeroAleatorio = (int) Math.floor(Math.random() * 10);
+        String numero = "";
+        numero = String.valueOf(numeroAleatorio);
     }//GEN-LAST:event_btnGeneraActionPerformed
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    private void txtIntentosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIntentosActionPerformed
+        numeroAleatorio = Integer.parseInt(btnGenera.getText());
+        int numero = Integer.parseInt(txtIntentos.getText());
+        if (intentos < 3) {
+            txtIntentos.setText("Intenta de nuevo.");
+        } else {
+            txtIntentos.setText("Intentos acabados.");       
+        }
+    }//GEN-LAST:event_txtIntentosActionPerformed
+
+    private void btnCompruebaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCompruebaActionPerformed
+        if(numeroAleatorio == numUsuario) {
+            txtUsuario.setText("");
+        } else {
+            txtUsuario.getText();
+        }
+    }//GEN-LAST:event_btnCompruebaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -119,7 +172,10 @@ public class Adivinar extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnComprueba;
     private javax.swing.JButton btnGenera;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField txtIntentos;
+    private javax.swing.JTextField txtRandom;
+    private javax.swing.JTextField txtUsuario;
     // End of variables declaration//GEN-END:variables
 }
